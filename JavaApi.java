@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class JavaApi {
@@ -31,6 +32,16 @@ public class JavaApi {
 
         System.out.println("Factorial is " + factorial);
 
+        // Using map to change each words first letter to upper case and rest to lower case.
+
+        String words[] = {"aPPle", "dEll","goOgle"};
+        List <String> wordsList = Arrays.asList(words);
+
+        List <String> finalList = wordsList.stream()
+            .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1, word.length()).toLowerCase())
+            .collect(Collectors.toList());
         
+        finalList.stream()
+        .forEach(word -> System.out.println(word));        
     }
 }

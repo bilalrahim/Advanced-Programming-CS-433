@@ -50,8 +50,9 @@ class Process{
         long startTime = System.nanoTime();
         thread.start();
         thread2.start();
+	thread2.join();
         long stopTime = System.nanoTime();
-        thread2.join();
+       
         
         System.out.print("Execution Time in nanoseconds: ");
         System.out.println(stopTime - startTime);
