@@ -6,8 +6,12 @@ import java.util.stream.IntStream;
 public class JavaApi {
     public static void main(String[] args) {
         
-        Integer intArray[] = {10,40,10,50,20,30,50,01,02,20};
+        Integer intArray[] = {10,40,10,50,20,30,50,01,02,20};  
         List <Integer> intList = Arrays.asList(intArray);
+
+        
+
+
 
         // Manipulating List.
         // Works in three steps
@@ -32,8 +36,17 @@ public class JavaApi {
 
         System.out.println("Factorial is " + factorial);
 
-        // Using map to change each words first letter to upper case and rest to lower case.
+        // Using filter, filter filter outs a given list on a set condition.
+        // Filter returns a list of the filtered out elements.
 
+        List <Integer> evens = IntStream.range(0, 101)
+                               .filter(x-> x%2 == 0)
+                               .boxed()
+                               .collect(Collectors.toList());
+        evens.forEach(x -> System.out.println(x));
+
+        // Using map to change each words first letter to upper case and rest to lower case.
+        // Map applies a function on each element of the passed array and returns an array.
         String words[] = {"aPPle", "dEll","goOgle"};
         List <String> wordsList = Arrays.asList(words);
 

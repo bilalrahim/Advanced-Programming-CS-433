@@ -1,6 +1,8 @@
 // Implementation of threads in Java.
 // This class is named Process because main function is treated like a process.
 
+// Runable state of thread : its waiting ready to run and waiting for its round.
+// Running : its in the running state.
 class even extends Thread{
     @Override
     public void run(){
@@ -46,11 +48,15 @@ class Process{
         even thread =new even();
         prime thread2 = new prime();
 
+        thread.setName("Even Thread");
+        thread2.setName("Prime Thread");
+
         // Calculating execution time with thread.
         long startTime = System.nanoTime();
         thread.start();
         thread2.start();
-	thread2.join();
+        thread.join();
+	    thread2.join();
         long stopTime = System.nanoTime();
        
         
@@ -65,5 +71,23 @@ class Process{
 
         System.out.print("Execution Time in nanoseconds: ");
         System.out.println(stopTime - startTime);
+
+
+        // Implementing thread without a class using Runnable.
+
+        Runnable even = ()-> 
+                    {
+                        int counter = 0 ;
+
+                        for (int i = 0; i < 10000; i++) {
+                            if (i % 2 == 0){
+                                counter += 1;
+                            }
+                        }
+                        System.out.println("Even numbers in range 0 to 10000 : " + counter);
+                        System.out.println("Calculated by Thread : " + Thread.currentThread().getName()); 
+                    };
+        new Thread(even).start();
+
     }
 }
